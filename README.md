@@ -1,8 +1,8 @@
 # calculadora-curso-git
 Una calculadora simple de consola desarrollada en JavaScript con cliente interactivo de uso para los trabajos prácticos del Curso de git.
 
-## Integrantes
-- Marcos Daniel Cerezo
+## 👥 Integrantes
+👨‍💻- Marcos Daniel Cerezo
 
 ## 📋 Características
 
