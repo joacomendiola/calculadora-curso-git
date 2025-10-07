@@ -20,8 +20,13 @@ class Calculadora {
     }
 
     raizCuadrada(numero) {
-        // TODO: Implementar raíz cuadrada
+    if (numero < 0) {
+        console.log("el numero es negativo");
+        console.log("Vuelva a intentarlo");
+        return "";//si es negativo el numero que no colapse y vuelva al menu 
     }
+    return Math.sqrt(numero);
+}
 }
 
 // Exportar para usar en tests
