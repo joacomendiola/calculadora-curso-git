@@ -5,6 +5,7 @@ Una calculadora simple de consola desarrollada en JavaScript con cliente interac
 👨‍💻- Marcos Daniel Cerezo
 👨‍💻- Joaquin Mendiola
 👨‍💻- Gabriel Guitian
+👨‍💻- Eliam Vargas
 
 ## 📋 Características
 
