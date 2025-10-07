@@ -12,6 +12,9 @@ class Calculadora {
     }
 
     dividir(a, b) {
+        if (b === 0) {
+            return "Error: division por cero no permitida";
+        }
         return a / b;
     }
 
@@ -20,13 +23,13 @@ class Calculadora {
     }
 
     raizCuadrada(numero) {
-    if (numero < 0) {
-        console.log("el numero es negativo");
-        console.log("Vuelva a intentarlo");
-        return "";//si es negativo el numero que no colapse y vuelva al menu 
+        if (numero < 0) {
+            console.log("el numero es negativo");
+            console.log("Vuelva a intentarlo");
+            return ""; //si es negativo el numero que no colapse y vuelva al menu 
+        }
+        return Math.sqrt(numero);
     }
-    return Math.sqrt(numero);
-}
 }
 
 // Exportar para usar en tests
