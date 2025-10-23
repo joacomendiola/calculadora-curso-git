@@ -182,6 +182,19 @@ test('factorial de número negativo debe dar error', () => {
   expect(calc.factorial(-3)).toBe("Error: no se puede calcular el factorial de un número negativo");
 });
 
+// Tests de Memoria
+console.log('\nTests de memoria:');
+test('guardar y obtener último resultado', () => {
+  calc.guardarMemoria(42);
+  expect(calc.obtenerMemoria()).toBe(42);
+});
+
+test('limpiar memoria debe dejarla en null', () => {
+  calc.guardarMemoria(10);
+  calc.limpiarMemoria();
+  expect(calc.obtenerMemoria()).toBe(null);
+});
+
 // Resumen
 console.log('\n=== Resumen ===');
 console.log(`Tests pasados: ${testsPasados}`);
