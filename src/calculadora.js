@@ -1,51 +1,88 @@
 class Calculadora {
+    constructor() {
+        // Atributo de memoria
+        this.ultimaOperacion = null;
+    }
+
+    // Métodos de memoria
+    guardarMemoria(valor) {
+        this.ultimaOperacion = valor;
+    }
+
+    obtenerMemoria() {
+        return this.ultimaOperacion;
+    }
+
+    limpiarMemoria() {
+        this.ultimaOperacion = null;
+    }
+
+    // Operaciones matemáticas 
     sumar(a, b) {
-        return a + b;
+        const resultado = a + b;
+        this.guardarMemoria(resultado);
+        return resultado;
     }
 
     restar(a, b) {
-        return a - b;
+        const resultado = a - b;
+        this.guardarMemoria(resultado);
+        return resultado;
     }
 
     multiplicar(a, b) {
-        return a * b;
+        const resultado = a * b;
+        this.guardarMemoria(resultado);
+        return resultado;
     }
 
     dividir(a, b) {
         if (b === 0) {
-            return "Error: division por cero no permitida";
-        } else if (a === 0) {
-            return 0
+            const resultado = Infinity; 
+            this.guardarMemoria(resultado);
+            return resultado;
         }
-        return a / b;
+        const resultado = a / b;
+        this.guardarMemoria(resultado);
+        return resultado;
     }
 
     potencia(base, exponente) {
-        return Math.pow(base, exponente);
+        const resultado = Math.pow(base, exponente);
+        this.guardarMemoria(resultado);
+        return resultado;
     }
 
     raizCuadrada(numero) {
         if (numero < 0) {
             console.log("el numero es negativo");
             console.log("Vuelva a intentarlo");
-            return ""; //si es negativo el numero que no colapse y vuelva al menu 
+            const resultado = NaN;
+            this.guardarMemoria(resultado);
+            return resultado;
         }
-        return Math.sqrt(numero);
+        const resultado = Math.sqrt(numero);
+        this.guardarMemoria(resultado);
+        return resultado;
     }
 
     factorial(n) {
-    if (n < 0) {
-        return "Error: no se puede calcular el factorial de un número negativo"; 
+        if (n < 0) {
+            const mensaje = "Error: no se puede calcular el factorial de un número negativo";
+            this.guardarMemoria(mensaje);
+            return mensaje;
+        }
+        if (n === 0 || n === 1) {
+            this.guardarMemoria(1);
+            return 1;
+        }
+        let resultado = 1;
+        for (let i = 2; i <= n; i++) {
+            resultado *= i;
+        }
+        this.guardarMemoria(resultado);
+        return resultado;
     }
-    if (n === 0 || n === 1) {
-        return 1;
-    }
-    let resultado = 1;
-    for (let i = 2; i <= n; i++) {
-        resultado *= i;
-    }
-    return resultado;
-}
 }
 
 // Exportar para usar en tests
@@ -66,3 +103,6 @@ console.log('- calc.multiplicar(a, b)');
 console.log('- calc.dividir(a, b)');
 console.log('- calc.potencia(base, exponente)');
 console.log('- calc.raizCuadrada(numero)');
+console.log('- calc.factorial(n)');
+console.log('- calc.obtenerMemoria()');
+console.log('- calc.limpiarMemoria()');
