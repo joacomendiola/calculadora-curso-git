@@ -66,6 +66,12 @@ class Calculadora {
         }
         return a % b;
     }
+    porcentaje(a, b) {
+        if (b === 0) {
+            return "Error: division por cero no permitida";
+        }
+        return (a / b) * 100;
+    }
 }
 
 // Exportar para usar en tests

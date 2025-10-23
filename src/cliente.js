@@ -21,6 +21,7 @@ function mostrarMenu() {
     console.log('7. Factorial');
     console.log('8. Promedio(ingresar varios numeros)');
     console.log('9. Resto (Módulo)');
+    console.log('10. Porcentaje (a sobre b)');
     console.log('0. Salir');
     console.log('=================================');
 }
@@ -148,6 +149,14 @@ async function ejecutarOpcion(opcion) {
                 (a, b) => calc.resto(a, b),
                 'resto'
             );
+            break;
+        case '10':
+            const numA = await pedirNumero('Ingrese el número (a): ');
+            const numB = await pedirNumero('Ingrese el total (b): ');
+            const resultadoPorc = calc.porcentaje(numA, numB);
+
+            //toFixed(2) para mostrar solo 2 decimales
+            console.log(`\n✓ Resultado: ${numA} es el ${resultadoPorc.toFixed(2)}% de ${numB}`);
             break;
 
         case '0':
