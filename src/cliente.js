@@ -19,6 +19,8 @@ function mostrarMenu() {
   console.log('5. Potencia');
   console.log('6. Raíz Cuadrada');
   console.log('7. Factorial');
+  console.log('8. Mostrar ultima operacion');
+  console.log('9. Limpiar memoria');
   console.log('0. Salir');
   console.log('=================================');
 }
@@ -124,6 +126,20 @@ async function ejecutarOpcion(opcion) {
         'factorial'
       )
       break;
+
+    case '8':
+      const ultima = calc.obtenerMemoria();
+      if (ultima === null) {
+      console.log('\n No hay resultado guardado en memoria');
+      } else {
+      console.log(`\nÚltimo resultado guardado: ${ultima}`);
+      }
+      break;
+
+  case '9':
+    calc.limpiarMemoria();
+    console.log('\nMemoria borrada correctamente');
+    break;
     
     case '0':
       console.log('\n¡Hasta luego! 👋');
