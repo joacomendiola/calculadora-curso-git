@@ -59,6 +59,13 @@ class Calculadora {
         const total = valores.reduce((acc, n) => acc + n, 0);
         return total / valores.length;
     }
+    // Funcion de Resto
+    resto(a, b) {
+        if (b === 0) {
+            return "Error: division por cero no permitida";
+        }
+        return a % b;
+    }
 }
 
 // Exportar para usar en tests

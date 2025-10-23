@@ -20,6 +20,7 @@ function mostrarMenu() {
     console.log('6. Raíz Cuadrada');
     console.log('7. Factorial');
     console.log('8. Promedio(ingresar varios numeros)');
+    console.log('9. Resto (Módulo)');
     console.log('0. Salir');
     console.log('=================================');
 }
@@ -73,6 +74,7 @@ function getSimboloOperacion(nombre) {
         'multiplicación': '×',
         'división': '÷',
         'potencia': '^'
+        'resto': '%'
     };
     return simbolos[nombre] || '';
 }
@@ -140,6 +142,12 @@ async function ejecutarOpcion(opcion) {
             } catch (e) {
                 console.log(`\n⚠️  Error: ${e.message}`);
             }
+            break;
+        case '9':
+            await operacionDosNumeros(
+                (a, b) => calc.resto(a, b),
+                'resto'
+            );
             break;
 
         case '0':
