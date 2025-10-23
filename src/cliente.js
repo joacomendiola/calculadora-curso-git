@@ -22,6 +22,7 @@ function mostrarMenu() {
     console.log('8. Promedio(ingresar varios numeros)');
     console.log('9. Resto (Módulo)');
     console.log('10. Porcentaje (a sobre b)');
+    console.log('11. Maximo(ingresar varios numeros)');
     console.log('0. Salir');
     console.log('=================================');
 }
@@ -74,7 +75,7 @@ function getSimboloOperacion(nombre) {
         'resta': '-',
         'multiplicación': '×',
         'división': '÷',
-        'potencia': '^'
+        'potencia': '^',
         'resto': '%'
     };
     return simbolos[nombre] || '';
@@ -158,7 +159,16 @@ async function ejecutarOpcion(opcion) {
             //toFixed(2) para mostrar solo 2 decimales
             console.log(`\n✓ Resultado: ${numA} es el ${resultadoPorc.toFixed(2)}% de ${numB}`);
             break;
-
+        case '11':
+            const linea2 = await pedirTexto('Ingrese numeros separados por coma o espacio: ');
+            const arreglo2 = linea2.split(/[,\s]+/).map(x => parseFloat(x)).filter(x => !Number.isNaN(x));
+            try {
+                const res = calc.maximo(arreglo2);
+                console.log('Maximo =', res);
+            } catch (e) {
+                console.log('Error:', e.message);
+            }
+            break;
         case '0':
             console.log('\n¡Hasta luego! 👋');
             rl.close();
