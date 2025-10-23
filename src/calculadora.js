@@ -34,18 +34,31 @@ class Calculadora {
     }
 
     factorial(n) {
-    if (n < 0) {
-        return "Error: no se puede calcular el factorial de un número negativo"; 
+        if (n < 0) {
+            return "Error: no se puede calcular el factorial de un número negativo";
+        }
+        if (n === 0 || n === 1) {
+            return 1;
+        }
+        let resultado = 1;
+        for (let i = 2; i <= n; i++) {
+            resultado *= i;
+        }
+        return resultado;
     }
-    if (n === 0 || n === 1) {
-        return 1;
+    promedio(numeros) {
+        //Verifica que sea un arreglo y que no este vacio
+        if (!Array.isArray(numeros) || numeros.length === 0) {
+            throw new Error("Debe ingresar al menos un numero");
+        }
+        //Convierte los elementos a numero y descarta los no validos 
+        const valores = numeros.map(Number).filter(n => !Number.isNaN(n));
+        //Si todos los elementos del array son invalidos
+        if (valores.length === 0) throw new Error("No contiene numeros validos");
+        //calculo
+        const total = valores.reduce((acc, n) => acc + n, 0);
+        return total / valores.length;
     }
-    let resultado = 1;
-    for (let i = 2; i <= n; i++) {
-        resultado *= i;
-    }
-    return resultado;
-}
 }
 
 // Exportar para usar en tests
