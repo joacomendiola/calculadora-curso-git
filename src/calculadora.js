@@ -2,6 +2,8 @@ class Calculadora {
     constructor() {
         // Atributo de memoria
         this.ultimaOperacion = null;
+        // atributo para historial
+        this.historial = [];
     }
 
     // Métodos de memoria
@@ -46,20 +48,7 @@ class Calculadora {
         this.guardarMemoria(resultado);
         return resultado;
     }
-  restar(a, b) {
-    return a - b;
-  }
-
-  multiplicar(a, b) {
-    return a * b;
-  }
-
-  dividir(a, b) {
-    if (b == 0)
-	    throw new Error('No se puede dividir por cero');
-    return a / b;
-  }
-
+    
     potencia(base, exponente) {
         const resultado = Math.pow(base, exponente);
         this.guardarMemoria(resultado);
@@ -142,6 +131,42 @@ class Calculadora {
         this.guardarMemoria(resultado);
         return resultado;
     }
+
+    logaritmo(numero, base = Math.E) {
+    if (numero <= 0) {
+        const mensaje = "Error: el logaritmo solo está definido para números positivos.";
+        this.guardarMemoria(mensaje);
+        this.historial.push(`logaritmo(${numero}, base ${base}) → ${mensaje}`);
+        return mensaje;
+    }
+
+    let resultado;
+    if (base === Math.E) {
+        resultado = Math.log(numero); // para logaritmo natural
+    } else if (base === 10) {
+        resultado = Math.log10(numero); //para logaritmo base 10
+    } else {
+        resultado = Math.log(numero) / Math.log(base); 
+    }
+
+    this.guardarMemoria(resultado);
+    this.historial.push(`logaritmo(${numero}, base ${base}) = ${resultado}`);
+    return resultado;
+}
+mostrarHistorial() {
+    if (this.historial.length === 0) {
+        console.log("No hay operaciones registradas.");
+        return;
+    }
+    console.log("=== Historial de operaciones ===");
+    this.historial.forEach(op => console.log(op));
+}
+
+limpiarHistorial() {
+    this.historial = [];
+    console.log("Historial borrado.");
+}
+
 }
 
 // Exportar para usar en tests
@@ -169,3 +194,7 @@ console.log('- calc.porcentaje(a, b)');
 console.log('- calc.obtenerMemoria()');
 console.log('- calc.limpiarMemoria()');
 console.log('- calc.maximo(numeros)');
+
+console.log('- calc.logaritmo(numero, base)');
+console.log('- calc.mostrarHistorial()');
+console.log('- calc.limpiarHistorial()');
