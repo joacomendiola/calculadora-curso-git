@@ -140,9 +140,9 @@ async function ejecutarOpcion(opcion) {
             const arreglo = linea.split(/[,\s]+/).map(x => parseFloat(x)).filter(x => !Number.isNaN(x));
             try {
                 const res = calc.promedio(arreglo);
-                console.log(`\n✓ Promedio de ${arr.length} valores = ${res}`);
+                console.log(`Promedio =`, res);
             } catch (e) {
-                console.log(`\n⚠️  Error: ${e.message}`);
+                console.log('Error: ', e.message);
             }
             break;
         case '9':
