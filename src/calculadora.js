@@ -23,18 +23,21 @@ class Calculadora {
     sumar(a, b) {
         const resultado = a + b;
         this.guardarMemoria(resultado);
+        this.historial.push(`sumar(${a}, ${b}) = ${resultado}`);
         return resultado;
     }
 
     restar(a, b) {
         const resultado = a - b;
         this.guardarMemoria(resultado);
+        this.historial.push(`resta(${a}, ${b}) = ${resultado}`);
         return resultado;
     }
 
     multiplicar(a, b) {
         const resultado = a * b;
         this.guardarMemoria(resultado);
+        this.historial.push(`multiplicacion (${a}, ${b}) = ${resultado}`);
         return resultado;
     }
 
@@ -42,16 +45,19 @@ class Calculadora {
         if (b === 0) {
             const resultado = Infinity; 
             this.guardarMemoria(resultado);
+            this.historial.push(`division(${a}, ${b}) = ${resultado}`);
             return resultado;
         }
         const resultado = a / b;
         this.guardarMemoria(resultado);
+        this.historial.push(`division(${a}, ${b}) = ${resultado}`);
         return resultado;
     }
     
     potencia(base, exponente) {
         const resultado = Math.pow(base, exponente);
         this.guardarMemoria(resultado);
+        this.historial.push(`potencia(${a}, ${b}) = ${resultado}`);
         return resultado;
     }
 
@@ -61,10 +67,12 @@ class Calculadora {
             console.log("Vuelva a intentarlo");
             const resultado = NaN;
             this.guardarMemoria(resultado);
+            this.historial.push(`raiz(${a}, ${b}) = ${resultado}`);
             return resultado;
         }
         const resultado = Math.sqrt(numero);
         this.guardarMemoria(resultado);
+        this.historial.push(`raiz(${a}, ${b}) = ${resultado}`);
         return resultado;
     }
 
@@ -72,10 +80,12 @@ class Calculadora {
         if (n < 0) {
             const mensaje = "Error: no se puede calcular el factorial de un número negativo";
             this.guardarMemoria(mensaje);
+            this.historial.push(`factorial(${a}, ${b}) = ${resultado}`);
             return mensaje;
         }
         if (n === 0 || n === 1) {
             this.guardarMemoria(1);
+            this.historial.push(`factorial(${a}, ${b}) = ${resultado}`);
             return 1;
         }
         let resultado = 1;
@@ -83,6 +93,7 @@ class Calculadora {
             resultado *= i;
         }
         this.guardarMemoria(resultado);
+        this.historial.push(`factorial(${a}, ${b}) = ${resultado}`);
         return resultado;
     }
 
@@ -95,6 +106,7 @@ class Calculadora {
         const total = valores.reduce((acc, n) => acc + n, 0);
         const resultado = total / valores.length;
         this.guardarMemoria(resultado);
+        this.historial.push(`promedio(${a}, ${b}) = ${resultado}`);
         return resultado;
     }
     maximo(numeros) {
@@ -114,10 +126,12 @@ class Calculadora {
         if (b === 0) {
             const mensaje = "Error: división por cero no permitida";
             this.guardarMemoria(mensaje);
+            this.historial.push(`resto(${a}, ${b}) = ${resultado}`);
             return mensaje;
         }
         const resultado = a % b;
         this.guardarMemoria(resultado);
+        this.historial.push(`resto(${a}, ${b}) = ${resultado}`);
         return resultado;
     }
 
@@ -125,10 +139,12 @@ class Calculadora {
         if (b === 0) {
             const mensaje = "Error: división por cero no permitida";
             this.guardarMemoria(mensaje);
+            this.historial.porcentaje(`resto(${a}, ${b}) = ${resultado}`);
             return mensaje;
         }
         const resultado = (a / b) * 100;
         this.guardarMemoria(resultado);
+        this.historial.porcentaje(`resto(${a}, ${b}) = ${resultado}`);
         return resultado;
     }
 
@@ -160,6 +176,7 @@ mostrarHistorial() {
     }
     console.log("=== Historial de operaciones ===");
     this.historial.forEach(op => console.log(op));
+    return this.historial;
 }
 
 limpiarHistorial() {
