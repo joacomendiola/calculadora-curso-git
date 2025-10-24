@@ -24,7 +24,9 @@ function mostrarMenu() {
     console.log('10. Porcentaje (a sobre b)');
     console.log('11. Mostrar ultima operacion');
     console.log('12. Limpiar memoria');
-    console.log('13. Maximo(ingresar varios numeros)');
+    console.log('13. Ver historial de operaciones');
+    console.log('14. Borrar historial');
+    console.log('15. Maximo(ingresar varios numeros)');
     console.log('0. Salir');
     console.log('=================================');
 }
@@ -174,9 +176,16 @@ async function ejecutarOpcion(opcion) {
              calc.limpiarMemoria();
             console.log('\nMemoria borrada correctamente');
             break;
+        
+            case '13':
+            calc.mostrarHistorial();
+            
+            break;
+             case '14':
+            calc.limpiarHistorial();
+            break;
 
-
-        case '13':
+        case '15':
             const linea2 = await pedirTexto('Ingrese numeros separados por coma o espacio: ');
             const arreglo2 = linea2.split(/[,\s]+/).map(x => parseFloat(x)).filter(x => !Number.isNaN(x));
             try {
