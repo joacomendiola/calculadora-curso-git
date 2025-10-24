@@ -83,6 +83,40 @@ class Calculadora {
         this.guardarMemoria(resultado);
         return resultado;
     }
+
+    promedio(numeros) {
+        if (!Array.isArray(numeros) || numeros.length === 0) {
+            throw new Error("Debe ingresar al menos un número");
+        }
+        const valores = numeros.map(Number).filter(n => !Number.isNaN(n));
+        if (valores.length === 0) throw new Error("No contiene números válidos");
+        const total = valores.reduce((acc, n) => acc + n, 0);
+        const resultado = total / valores.length;
+        this.guardarMemoria(resultado);
+        return resultado;
+    }
+
+    resto(a, b) {
+        if (b === 0) {
+            const mensaje = "Error: división por cero no permitida";
+            this.guardarMemoria(mensaje);
+            return mensaje;
+        }
+        const resultado = a % b;
+        this.guardarMemoria(resultado);
+        return resultado;
+    }
+
+    porcentaje(a, b) {
+        if (b === 0) {
+            const mensaje = "Error: división por cero no permitida";
+            this.guardarMemoria(mensaje);
+            return mensaje;
+        }
+        const resultado = (a / b) * 100;
+        this.guardarMemoria(resultado);
+        return resultado;
+    }
 }
 
 // Exportar para usar en tests
@@ -104,5 +138,8 @@ console.log('- calc.dividir(a, b)');
 console.log('- calc.potencia(base, exponente)');
 console.log('- calc.raizCuadrada(numero)');
 console.log('- calc.factorial(n)');
+console.log('- calc.promedio([a, b, c, ...])');
+console.log('- calc.resto(a, b)');
+console.log('- calc.porcentaje(a, b)');
 console.log('- calc.obtenerMemoria()');
 console.log('- calc.limpiarMemoria()');
