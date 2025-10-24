@@ -22,11 +22,12 @@ function mostrarMenu() {
     console.log('8. Promedio(ingresar varios numeros)');
     console.log('9. Resto (Módulo)');
     console.log('10. Porcentaje (a sobre b)');
-    console.log('11. Mostrar ultima operacion');
-    console.log('12. Limpiar memoria');
-    console.log('13. Ver historial de operaciones');
-    console.log('14. Borrar historial');
-    console.log('15. Maximo(ingresar varios numeros)');
+    console.log('11. Logaritmo (numero y base)');
+    console.log('12. Mostrar ultima operacion');
+    console.log('13. Limpiar memoria');
+    console.log('14. Ver historial de operaciones');
+    console.log('15. Borrar historial');
+    console.log('16. Maximo(ingresar varios numeros)');
     console.log('0. Salir');
     console.log('=================================');
 }
@@ -164,6 +165,22 @@ async function ejecutarOpcion(opcion) {
             console.log(`\n✓ Resultado: ${numA} es el ${resultadoPorc.toFixed(2)}% de ${numB}`);
             break;
         case '11':
+            const numero = await pedirNumero('Ingrese el numero ');
+            const baseLog = await pedirNumero('Ingrese la base ');
+
+            // por si pone cualquiero base o 0
+            const baseFinal = isNaN(baseLog) || baseLog === 0 ? Math.E : baseLog;
+            const resultadoLog = calc.logaritmo(numero, baseFinal);
+
+            if (typeof resultadoLog === 'string') {
+            
+            console.log(`${resultadoLog}`);
+                } else {
+                console.log(`resultado: logaritmo base ${baseFinal} de ${numero} = ${resultadoLog.toFixed(4)}`);
+                }
+            break;
+
+        case '12':
              const ultima = calc.obtenerMemoria();
              if (ultima === null) {
                console.log('\n⚠️  No hay resultado guardado en memoria');
@@ -172,20 +189,20 @@ async function ejecutarOpcion(opcion) {
             }
             break;
 
-        case '12':
+        case '13':
              calc.limpiarMemoria();
             console.log('\nMemoria borrada correctamente');
             break;
         
-            case '13':
+            case '14':
             calc.mostrarHistorial();
             
             break;
-             case '14':
+             case '15':
             calc.limpiarHistorial();
             break;
 
-        case '15':
+        case '16':
             const linea2 = await pedirTexto('Ingrese numeros separados por coma o espacio: ');
             const arreglo2 = linea2.split(/[,\s]+/).map(x => parseFloat(x)).filter(x => !Number.isNaN(x));
             try {
