@@ -168,3 +168,4 @@ console.log('- calc.resto(a, b)');
 console.log('- calc.porcentaje(a, b)');
 console.log('- calc.obtenerMemoria()');
 console.log('- calc.limpiarMemoria()');
+console.log('- calc.maximo(numeros)');
