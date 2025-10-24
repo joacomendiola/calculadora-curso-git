@@ -24,6 +24,7 @@ function mostrarMenu() {
     console.log('10. Porcentaje (a sobre b)');
     console.log('11. Mostrar ultima operacion');
     console.log('12. Limpiar memoria');
+    console.log('13. Maximo(ingresar varios numeros)');
     console.log('0. Salir');
     console.log('=================================');
 }
@@ -143,7 +144,7 @@ async function ejecutarOpcion(opcion) {
                 const res = calc.promedio(arreglo);
                 console.log(`\n✓ Promedio de ${arreglo.length} valores = ${res}`);
             } catch (e) {
-                console.log(`\n⚠️  Error: ${e.message}`);
+                console.log('Error: ', e.message);
             }
             break;
         case '9':
@@ -160,7 +161,6 @@ async function ejecutarOpcion(opcion) {
             //toFixed(2) para mostrar solo 2 decimales
             console.log(`\n✓ Resultado: ${numA} es el ${resultadoPorc.toFixed(2)}% de ${numB}`);
             break;
-
         case '11':
              const ultima = calc.obtenerMemoria();
              if (ultima === null) {
@@ -175,6 +175,17 @@ async function ejecutarOpcion(opcion) {
             console.log('\nMemoria borrada correctamente');
             break;
 
+
+        case '13':
+            const linea2 = await pedirTexto('Ingrese numeros separados por coma o espacio: ');
+            const arreglo2 = linea2.split(/[,\s]+/).map(x => parseFloat(x)).filter(x => !Number.isNaN(x));
+            try {
+                const res = calc.maximo(arreglo2);
+                console.log('Maximo =', res);
+            } catch (e) {
+                console.log('Error:', e.message);
+            }
+            break;
         case '0':
             console.log('\n¡Hasta luego! 👋');
             rl.close();
